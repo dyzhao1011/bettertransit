@@ -53,7 +53,7 @@ function UploadPage() {
         <p>- OR -</p>
         <label className="upload-button">
           {uploading ? "Uploading..." : "Browse Files"}
-          <input type="file" accept=".csv" multiple onChange={handleFileChange} hidden />
+          <input type="file" accept="*" multiple onChange={handleFileChange} hidden />
         </label>
       </div>
 
