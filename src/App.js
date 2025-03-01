@@ -3,17 +3,19 @@ import { motion } from "framer-motion";
 import "./App.css";
 
 function App() {
-  const text = "betterTransit".split(""); // Split text into individual letters
+  // Store the text as an array of letters for animation
+  const text = "betterTransit".split("");
 
   return (
     <div className="home-container">
+      {/* Animated text container */}
       <motion.div className="title">
         {text.map((letter, index) => (
           <motion.span
             key={index}
-            initial={{ opacity: 0, x: 0 }}
-            animate={{ opacity: 1, x: index * 10 - text.length * 5 }} // Spreads letters outward
-            transition={{ delay: index * 0.05, duration: 0.5 }}
+            initial={{ opacity: 0, y: 10 }} // Start hidden and slightly lower
+            animate={{ opacity: 1, y: 0 }} // Fade in and move up to normal position
+            transition={{ delay: index * 0.08, duration: 0.6, ease: "easeOut" }} // More prominent fade effect
           >
             {letter}
           </motion.span>

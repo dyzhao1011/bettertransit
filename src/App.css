@@ -1,3 +1,4 @@
+/* Center the text on the screen */
 .home-container {
   display: flex;
   align-items: center;
@@ -7,9 +8,11 @@
   text-align: center;
 }
 
+/* Styling for the title */
 .title {
-  font-size: 3rem;
+  font-size: 7rem; /* Large, readable text */
   font-weight: bold;
-  color: #007bff; /* Blue text */
-  display: flex;
+  color: #007bff; /* Blue color */
+  display: inline-block; /* Ensures letters are not spread apart */
+  letter-spacing: normal; /* No extra spacing */
 }
