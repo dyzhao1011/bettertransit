@@ -1,7 +1,8 @@
 /* Full-page container */
 .app-container {
   overflow-y: auto;
-  height: 200vh; /* Allow scrolling */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  height: 200vh; /* Allow vertical scrolling only */
 }
 
 /* Home section */
@@ -30,6 +31,7 @@
   color: #007bff; /* Blue font */
   padding: 2rem;
   overflow-y: auto; /* Allows scrolling */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
 }
 
 /* Upload box styling */
@@ -85,9 +87,8 @@
 }
 
 /* Uploaded file list left aligned and scrollable */
-.uploaded-files {
-  width: 80%;
-  max-width: 600px;
+.uploaded-files, .parsed-data {
+  width: 400px; /* Match width of upload box */
   max-height: 300px;
   background: white;
   border-radius: 10px;
@@ -123,20 +124,6 @@
 }
 
 /* Parsed data section left aligned and scrollable */
-.parsed-data {
-  width: 80%;
-  max-width: 600px;
-  max-height: 400px;
-  background: white;
-  border-radius: 10px;
-  padding: 1rem;
-  overflow-y: auto;
-  text-align: left;
-  margin-top: 20px;
-  margin-left: 2rem;
-  border: 2px solid #007bff;
-}
-
 .parsed-data h3 {
   font-size: 1.5rem;
   color: #007bff;
