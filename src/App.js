@@ -10,17 +10,13 @@ function App() {
   const { scrollYProgress } = useScroll();
 
   // Fade out text when scrolling
-  const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-
-  // Slide in UploadPage when scrolling down
-  const uploadPageY = useTransform(scrollYProgress, [0.4, 0.8], [100, 0]); 
-  const uploadPageOpacity = useTransform(scrollYProgress, [0.4, 0.8], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
   return (
     <div className="app-container">
       {/* First section with the animated logo */}
       <section className="home-container">
-        <motion.div className="title" style={{ opacity: textOpacity }}>
+        <motion.div className="title" style={{ opacity }}>
           {text.map((letter, index) => (
             <motion.span
               key={index}
@@ -34,10 +30,10 @@ function App() {
         </motion.div>
       </section>
 
-      {/* UploadPage component (New Page) with animation */}
-      <motion.section className="upload-page" style={{ y: uploadPageY, opacity: uploadPageOpacity }}>
+      {/* UploadPage component (New Page) */}
+      <section className="upload-page">
         <UploadPage />
-      </motion.section>
+      </section>
     </div>
   );
 }
