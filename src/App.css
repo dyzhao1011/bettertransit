@@ -19,12 +19,37 @@
 }
 
 /* UploadPage section */
-.upload-page {
+.upload-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100vw;
   background-color: #007bff; /* Blue background */
   color: white;
   text-align: center;
+}
+
+/* Upload button styling */
+.upload-button {
+  display: inline-block;
+  background-color: #ffdb4d; /* Yellow button */
+  color: rgb(0, 123, 255);
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.upload-button:hover {
+  background-color: #ffcc00; /* Slightly darker yellow on hover */
+  transform: scale(1.05); /* Slight grow effect to indicate clickability */
+}
+
+.upload-button:active {
+  transform: scale(0.95); /* Slight shrink effect when clicked */
 }
