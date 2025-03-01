@@ -1,6 +1,7 @@
 /* Center the text on the screen */
-.home-container {
+.home-container, .upload-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -15,4 +16,43 @@
   color: #007bff; /* Blue color */
   display: inline-block; /* Ensures letters are not spread apart */
   letter-spacing: normal; /* No extra spacing */
+}
+
+/* Upload button styling */
+.upload-button {
+  display: inline-block;
+  background-color: #007bff; /* Blue button */
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.upload-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Display selected file name */
+.file-name {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Navigation buttons (for Upload and Back to Home) */
+.nav-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.nav-button:hover {
+  background-color: #0056b3;
 }
