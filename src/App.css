@@ -10,8 +10,12 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #ffdb4d;
+  width: 100vw; /* Ensure full width */
+  background-color: #ffdb4d; /* Keep original yellow background */
   text-align: center;
+  font-size: 7rem;
+  font-weight: bold;
+  color: #007bff;
 }
 
 /* UploadPage section */
