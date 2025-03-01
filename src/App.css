@@ -18,38 +18,129 @@
   color: #007bff;
 }
 
-/* UploadPage section */
+/* UploadPage section - Aligned to the left */
 .upload-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  width: 100vw;
+  background-color: #007bff;
+  color: #007bff; /* Blue font */
+  padding: 0 5%; /* Spacing from the left */
+}
+
+/* Upload box styling */
+.upload-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: #007bff; /* Blue background */
-  color: white;
+  width: 400px;
+  height: 300px;
+  border: 2px dashed #007bff;
+  background-color: white;
+  border-radius: 10px;
   text-align: center;
+  padding: 20px;
+  transition: background-color 0.3s ease;
 }
 
-/* Upload button styling */
+/* Highlight box when dragging */
+.upload-box.dragging {
+  background-color: #cce5ff; /* Light blue when dragging */
+}
+
+/* Upload text styling */
+.upload-box p {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  color: #007bff; /* Blue font */
+}
+
+/* Upload button */
 .upload-button {
   display: inline-block;
-  background-color: #ffdb4d; /* Yellow button */
-  color: rgb(0, 123, 255);
+  background-color: #007bff; /* Blue button */
+  color: white;
   padding: 12px 24px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .upload-button:hover {
-  background-color: #ffcc00; /* Slightly darker yellow on hover */
-  transform: scale(1.05); /* Slight grow effect to indicate clickability */
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 .upload-button:active {
-  transform: scale(0.95); /* Slight shrink effect when clicked */
+  transform: scale(0.95);
+}
+
+/* Uploaded file list */
+.uploaded-files {
+  margin-left: 30px;
+  width: 300px;
+  text-align: left;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  background: white;
+  margin-bottom: 10px;
+  border: 1px solid #007bff;
+}
+
+.file-item .cancel-button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.file-item .cancel-button:hover {
+  text-decoration: underline;
+}
+
+/* Parsed data section */
+.parsed-data {
+  margin-left: 30px;
+  width: 600px;
+}
+
+.parsed-data h3 {
+  font-size: 1.5rem;
+  color: #007bff;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #007bff;
+  text-align: left;
+}
+
+th {
+  background: #007bff;
+  color: white;
+}
+
+td {
+  color: #333;
 }
