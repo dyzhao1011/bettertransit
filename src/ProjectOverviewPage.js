@@ -17,7 +17,7 @@ function ProjectOverviewPage() {
 
   return (
     <div className="overview-container">
-      <h1>MISSION AND VISION</h1>
+      <h1>About BetterTransit</h1>
       <p className="problem-statement">
         <strong>The Problem:</strong> Subway systems often face unpredictable ridership, leading to overcrowding, inefficient scheduling, and commuter dissatisfaction.
       </p>
