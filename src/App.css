@@ -97,7 +97,7 @@
   text-align: left;
   margin-top: 20px;
   margin-left: 2rem;
-  border: 2px solid #007bff;
+  border: 2px dashed #007bff;
 }
 
 .file-item {
@@ -108,7 +108,7 @@
   border-radius: 5px;
   background: white;
   margin-bottom: 10px;
-  border: 1px solid #007bff;
+  border: 1px dashed #007bff;
 }
 
 .file-item .cancel-button {
@@ -295,7 +295,7 @@ td {
   background: white;
   padding: 1rem;
   border-radius: 10px;
-  border: 2px solid #007bff;
+  border: 2px dashed #007bff;
   text-align: center;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 300px; /* Ensures it doesn't stretch too wide */
@@ -399,14 +399,16 @@ td {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100vh; /* Lock height to viewport */
   width: 100vw;
-  background: #007bff; /* Blue background */
+  background: #007bff;
   color: white;
   text-align: center;
-  padding: 3rem;
-  font-size: x-large;
-  font-family: "League Spartan", sans-serif; /* Updated to League Spartan */
+  padding: 2rem;
+  overflow: hidden; /* Remove scrolling */
+  position: fixed; /* Ensure it stays fixed on the screen */
+  top: 0;
+  left: 0;
 }
 
 /* Title Styling */
@@ -470,6 +472,7 @@ td {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   margin-right: 2rem;
   margin-top: 20px;
+  border: 2px dashed #007bff;
 }
 
 /* Upload content (center) */
@@ -506,4 +509,6 @@ td {
   text-align: center;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+
 
