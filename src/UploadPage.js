@@ -5,6 +5,7 @@ function UploadPage() {
   const [files, setFiles] = useState([]); // Store uploaded files
   const [data, setData] = useState([]); // Store parsed CSV data
   const [uploading, setUploading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
 
   // Handle file selection
   const handleFileChange = (event) => {
@@ -100,10 +101,21 @@ function UploadPage() {
         )}
       </div>
 
-      {/* Container to keep the button at the bottom of the blue section */}
+      {/* Calculate Button */}
       <div className="calc-button-container">
-        <button className="calc-button">Calculate</button>
+        <button className="calc-button" onClick={() => setIsModalOpen(true)}>Calculate</button>
       </div>
+
+      {/* Modal Popup */}
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="close-button" onClick={() => setIsModalOpen(false)}>X</button>
+            <h2>Calculation Results</h2>
+            <p>This is where we will display calculation information.</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
