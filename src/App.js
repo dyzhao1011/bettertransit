@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./App.css";
 import UploadPage from "./UploadPage"; 
@@ -35,29 +36,33 @@ function App() {
                     ))}
                   </motion.div>
 
-          {/* Motto underneath the title */}
-          <motion.p
-            className="motto"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
-          >
-            "Optimizing subway ridership, one prediction at a time."
-          </motion.p>
-        </div>
-      </section>
+                  {/* Motto underneath the title */}
+                  <motion.p
+                    className="motto"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
+                  >
+                    "Optimizing subway ridership, one prediction at a time."
+                  </motion.p>
+                </div>
+              </section>
 
-      {/* Upload Section (Blue background) with Calendar */}
-      <section className="upload-page">
-        {/* Upload page contents */}
-        <UploadPage />
-        
-        {/* Calendar should be positioned in the top right of the blue section */}
-        <div className="calendar-container">
-          <CalendarComponent />
-        </div>
-      </section>
-    </div>
+              {/* Upload Section (Blue background) with Calendar */}
+              <section className="upload-page">
+                {/* Upload page contents */}
+                <UploadPage />
+                
+                {/* Calendar should be positioned in the top right of the blue section */}
+                <div className="calendar-container">
+                  <CalendarComponent />
+                </div>
+              </section>
+            </div>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
