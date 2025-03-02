@@ -341,3 +341,19 @@ td {
   background: #ffdb4d !important;
   color: #007bff !important;
 }
+
+/* Style for the calendar and time picker headings */
+.calendar-wrapper h3 {
+  color: #007bff; /* Blue color */
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Style for the selected date and time display */
+.selected-info {
+  color: #007bff; /* Blue color */
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
