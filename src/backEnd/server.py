@@ -11,6 +11,10 @@ from tensorflow.keras.metrics import RootMeanSquaredError
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import load_model
 from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+
+from datetime import datetime, timedelta
+
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for frontend communication
@@ -53,6 +57,9 @@ def upload_file():
 
 @app.route("/predict", methods=["POST"])
 def predict():
+    selected_date = request.data.decode('utf-8')  # Read raw body data
+    print(f"Received date: {selected_date}")  # Debugging
+
     df_grouped = pd.read_csv(filepath)
     df_grouped['datetime'] = pd.to_datetime(df_grouped['datetime'])  # Ensure the 'datetime' column is in datetime format
 
@@ -98,7 +105,7 @@ def predict():
 
     # function to generate windows (lags)
     def df_to_X_y(df, window_size=23):
-        df_as_np = full_data.to_numpy()
+        df_as_np = df.to_numpy()
         X = []
         y = []
         for i in range(len(df_as_np)-window_size):
@@ -134,12 +141,42 @@ def predict():
     model1.compile(loss=MeanSquaredError(), optimizer=Adam(learning_rate=0.001), metrics=[RootMeanSquaredError()])
     model1.fit(X_train1, y_train1, validation_data=(X_val1, y_val1), epochs=10, callbacks=[cp1])
 
+
+    selectedDate = datetime.strptime(selected_date, '%Y-%m-%d')
+    selectedDateDay = selectedDate.strftime('%A')
+    last_7_dates = np.unique(full_data.index.date)[-7:]
+
+    day_dict = {}
+    for date in last_7_dates:
+        day_dict[date.strftime('%A')] = date.strftime("%Y-%m-%d")
+
+    refDate = day_dict[selectedDateDay]
+
+    def getDayBefore(refDate):
+        refDate_obj = datetime.strptime(refDate, '%Y-%m-%d')
+
+        # Subtract one day to get the day before
+        day_before = refDate_obj - timedelta(days=1)
+
+        # Convert the result back to a string in the same format
+        day_before_str = day_before.strftime('%Y-%m-%d')
+        return day_before_str
+    
+    filtered_df = full_data[(full_data.index.date == pd.to_datetime(refDate).date()) | (full_data.index.date == pd.to_datetime(getDayBefore(refDate)).date())]
+    filtered_df = filtered_df.drop(filtered_df.index[0])
+  
     lastest_data = [X_test1[len(X_test1)-1]]
     lastest_data = np.reshape(lastest_data, (1, 23, 1))
-    prediction = model1.predict(lastest_data)[0][0]
 
-    print(prediction)
-    return jsonify({"message": "File uploaded successfully", "prediction": prediction.tolist()})
+
+    X2, y2 = df_to_X_y(filtered_df, WINDOW_SIZE)
+
+    #predict
+    train_predictions = model1.predict(X2).flatten()
+    train_results = pd.DataFrame(data={'Train Predictions':train_predictions, 'Actuals':y2})
+
+
+    return jsonify({"message": "File uploaded successfully", "prediction": train_results['Train Predictions'].tolist(), "actual": train_results['Actuals'].tolist()})
     
 
 if __name__ == "__main__":

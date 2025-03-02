@@ -5,8 +5,10 @@ import UploadPage from "./UploadPage";
 import CalendarComponent from "./CalendarComponent";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ProjectOverview from "./ProjectOverview";
+import { useState } from "react";
 
 function App() {
+  const [selectedDate, setSelectedDate] = useState();
   const text = "betterTransit".split("");
 
   // Track scroll position
@@ -55,11 +57,11 @@ function App() {
                 {/* Upload Section (Blue background) with Calendar */}
                 <section className="upload-page">
                   {/* Upload page contents */}
-                  <UploadPage />
+                  <UploadPage selectedDate={selectedDate}/>
 
                   {/* Calendar should be positioned in the top right of the blue section */}
                   <div className="calendar-container">
-                    <CalendarComponent />
+                    <CalendarComponent selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
                   </div>
                 </section>
               </>

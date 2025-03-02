@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "./App.css";
+import LineGraph from "./LineGraph";
 
-function UploadPage() {
+function UploadPage({selectedDate}) {
   const [files, setFiles] = useState([]); 
   const [data, setData] = useState([]); 
   const [uploading, setUploading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); 
-  const [prediction, setPrediction] = useState();
+  const [predictions, setPredictions] = useState([]);
+  const [actuals, setActuals] = useState([]);
 
   const formatFileSize = (size) => {
     if (size < 1024) return `${size} B`;
@@ -54,16 +56,21 @@ function UploadPage() {
   };
 
   const makePrediction = async () =>{
+    console.log(selectedDate);
     try {
       const response = await fetch("http://localhost:5555/predict", {
         method: "POST",
+        body: selectedDate,
       });
       
       if (response.ok) {
         const result = await response.json();
         if (result.prediction) {
           console.log(result.prediction);
-          setPrediction(Math.round(result.prediction));
+          console.log(result.actual);
+          setPredictions(result.prediction);
+          setActuals(result.actual);
+          
         } else {
           console.error("Error:", result.error);
         }
@@ -134,7 +141,7 @@ function UploadPage() {
           <div className="modal-content">
             <button className="close-button" onClick={() => setIsModalOpen(false)}>X</button>
             <h2>Calculation Results</h2>
-            <p>{prediction}</p>
+            <LineGraph data1 = {predictions} data2={actuals} />
           </div>
         </div>
       )}
