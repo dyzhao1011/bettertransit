@@ -18,12 +18,18 @@ function CalendarComponent() {
     return times;
   };
 
+  // Format date and time to match dataset format (YYYY-MM-DD HH:mm:ss)
+  const formatDateTime = (date) => {
+    const pad = (num) => (num < 10 ? `0${num}` : num);
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+  };
+
   // Update selectedDateTime whenever date or time changes
   useEffect(() => {
     if (selectedDate && selectedTime) {
       const newDateTime = new Date(selectedDate);
       newDateTime.setHours(selectedTime.getHours(), 0, 0, 0);
-      setSelectedDateTime(newDateTime);
+      setSelectedDateTime(formatDateTime(newDateTime));
     }
   }, [selectedDate, selectedTime]);
 
@@ -34,6 +40,7 @@ function CalendarComponent() {
         selected={selectedDate}
         onChange={(date) => setSelectedDate(date)}
         minDate={new Date()} // Only allows today and future dates
+        dateFormat="yyyy-MM-dd"
         inline // Full calendar display
       />
 
@@ -46,7 +53,7 @@ function CalendarComponent() {
         <option value="" disabled>Select a time</option>
         {generateTimeSlots().map((time, index) => (
           <option key={index} value={time.toISOString()}>
-            {time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true })}
+            {time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false })}
           </option>
         ))}
       </select>
@@ -54,7 +61,7 @@ function CalendarComponent() {
       {selectedDateTime && (
         <div className="selected-info">
           <h4>Selected Date and Time:</h4>
-          <p>{selectedDateTime.toLocaleString()}</p>
+          <p>{selectedDateTime}</p>
         </div>
       )}
     </div>
