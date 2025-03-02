@@ -53,14 +53,24 @@ function UploadPage() {
 
   return (
     <div className="upload-container">
-      <div className="upload-box">
-        <p>Drag and drop files here</p>
-        <p>- OR -</p>
-        <label className="upload-button">
-          {uploading ? "Uploading..." : "Browse Files"}
-          <input type="file" accept="*" multiple onChange={handleFileChange} hidden />
-        </label>
+      {/* New instruction box on the left */}
+      <div className="instruction-box">
+        <h3> Instructions</h3>
+        <p>1. Upload your ridership data file.</p>
+        <p>2. Select a date and time for analysis.</p>
+        <p>3. Click 'Calculate" to get results.</p>
       </div>
+
+      {/* Upload Box in the center */}
+      <div className="upload-content">
+        <div className="upload-box">
+          <p>Drag and drop files here</p>
+          <p>- OR -</p>
+          <label className="upload-button">
+            {uploading ? "Uploading..." : "Browse Files"}
+            <input type="file" accept="*" multiple onChange={handleFileChange} hidden />
+          </label>
+          </div>
 
       <div className="uploaded-files">
         <h3>Files</h3>
@@ -116,6 +126,7 @@ function UploadPage() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }
