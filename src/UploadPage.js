@@ -82,7 +82,7 @@ function UploadPage({selectedDate}) {
     }}
   return (
     <div className="upload-container">
-      <div className="upload-box">
+       <div className="upload-box">
         <p>Drag and drop files here</p>
         <p>- OR -</p>
         <label className="upload-button">
