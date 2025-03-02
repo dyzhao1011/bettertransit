@@ -348,31 +348,14 @@ td {
   padding: 10px 20px; /* Smaller padding */
   font-size: 1rem; /* Reduce font size */
   font-weight: bold;
-  border-radius: 50%;
-}
-
-/* Style for the time picker dropdown */
-.time-selector {
-  width: 100%;
-  padding: 8px;
-  border: 2px solid #007bff;
-  border-radius: 5px;
-  font-size: 1rem;
-  background-color: white;
+  text-transform: uppercase;
   color: #007bff;
+  background: white;
+  border: 3px solid #007bff; /* Blue border */
+  border-radius: 8px; /* Rounded corners */
   cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.time-selector:hover {
-  background-color: #e6f2ff;
-}
-
-/* Style for the selected date and time display */
-.selected-info {
-  color: #007bff;
-  font-size: 1.2rem;
-  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  letter-spacing: 1px;
   text-align: center;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
   text-decoration: none; /* Removes default link underline */
