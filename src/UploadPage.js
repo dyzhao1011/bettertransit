@@ -37,6 +37,7 @@ function UploadPage() {
           const result = await response.json();
           if (result.data) {
             setData(result.data);
+            console.log(result)
           } else {
             console.error("Error:", result.error);
           }
@@ -51,6 +52,24 @@ function UploadPage() {
     setUploading(false);
   };
 
+  const makePrediction = () =>{
+    try {
+      const response = fetch("http://localhost:5000/predict", {
+        method: "POST",
+      });
+
+      if (response.ok) {
+        const result = response.json();
+        if (result.data) {
+          console.log(result)
+        } else {
+          console.error("Error:", result.error);
+        }
+      } 
+    } catch (error) {
+      console.error("Upload error:", error);
+    }
+  }
   return (
     <div className="upload-container">
       <div className="upload-box">
@@ -104,7 +123,7 @@ function UploadPage() {
       </div>
 
       <div className="calc-button-container">
-        <button className="calc-button" onClick={() => setIsModalOpen(true)}>Calculate</button>
+        <button className="calc-button" onClick={() => {setIsModalOpen(true);makePrediction()}}>Calculate</button>
       </div>
 
       {isModalOpen && (
