@@ -341,3 +341,38 @@ td {
   background: #ffdb4d !important;
   color: #007bff !important;
 }
+
+/* Learn More Button - Smaller & Boxed */
+.overview-button {
+  display: inline-block;
+  padding: 10px 20px; /* Smaller padding */
+  font-size: 1rem; /* Reduce font size */
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #007bff;
+  background: white;
+  border: 3px solid #007bff; /* Blue border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  letter-spacing: 1px;
+  text-align: center;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  text-decoration: none; /* Removes default link underline */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover effect */
+.overview-button:hover {
+  background: #007bff;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Click effect */
+.overview-button:active {
+  transform: scale(0.95);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+}
