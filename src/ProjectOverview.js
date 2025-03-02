@@ -2,31 +2,36 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 
-function ProjectOverview() {
-  const navigate = useNavigate(); // Hook for navigation
+function ProjectOverviewPage() {
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate("/"); // Go back to the home page
+    setTimeout(() => {
+      const uploadSection = document.getElementById("upload");
+      if (uploadSection) {
+        uploadSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100); // Ensure smooth scrolling after navigation
+  };
 
   return (
-    <div className="project-overview-container">
-      <h1>Project Overview</h1>
-      <p>
-        This project helps users upload and analyze ridership data. You can
-        upload CSV files, view parsed data, and perform calculations.
+    <div className="overview-container">
+      <h1>About BetterTransit</h1>
+      <p className="problem-statement">
+        <strong>The Problem:</strong> Subway systems often face unpredictable ridership, leading to overcrowding, inefficient scheduling, and commuter dissatisfaction.
       </p>
-      <p>
-        Features include:
-        <ul>
-          <li>CSV file upload with parsing</li>
-          <li>Data visualization and calculation</li>
-          <li>A built-in calendar for tracking dates</li>
-        </ul>
+      <p className="solution-statement">
+        <strong>Our Solution:</strong> BetterTransit provides data-driven predictions to help optimize ridership, improving scheduling and enhancing the commuter experience.
       </p>
-
-      {/* Button to go back to the upload page */}
-      <button className="nav-button" onClick={() => navigate("/")}>
-        ← Back to Home
+      <p className="elevator-pitch">
+        <em>“Optimizing subway ridership, one prediction at a time.”</em>
+      </p>
+      <button className="back-button" onClick={handleBackClick}>
+        Back to Upload Page
       </button>
     </div>
   );
 }
 
-export default ProjectOverview;
+export default ProjectOverviewPage;
