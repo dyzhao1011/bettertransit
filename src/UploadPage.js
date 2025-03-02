@@ -99,6 +99,11 @@ function UploadPage() {
           <p>No data uploaded yet.</p>
         )}
       </div>
+
+      {/* Container to keep the button at the bottom of the blue section */}
+      <div className="calc-button-container">
+        <button className="calc-button">Calculate</button>
+      </div>
     </div>
   );
 }

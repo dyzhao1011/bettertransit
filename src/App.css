@@ -150,3 +150,45 @@ th {
 td {
   color: #333;
 }
+
+/* Ensure the upload section is full height */
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between; /* Keeps content at top and button at bottom */
+  height: 100vh;
+  width: 100vw;
+  background-color: #007bff;
+  color: #007bff; /* Blue font */
+  padding: 2rem;
+  overflow-y: auto; /* Allows scrolling */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  position: relative;
+}
+
+/* Container to fix button at the bottom of the upload section */
+.calc-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px; /* Adds spacing from the bottom */
+}
+
+/* Calculate Button */
+.calc-button {
+  background-color: #ffdb4d; /* Yellow button */
+  color: #007bff;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.calc-button:hover {
+  background-color: #ffcc00;
+  transform: scale(1.05);
+}
