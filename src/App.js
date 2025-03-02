@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./App.css";
 import UploadPage from "./UploadPage"; 
@@ -12,6 +12,14 @@ function App() {
   // Track scroll position
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+
+  // Ref for the project overview section
+  const overviewRef = useRef(null);
+
+  // Function to scroll smoothly to the overview section
+  const scrollToOverview = () => {
+    overviewRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <Router>
