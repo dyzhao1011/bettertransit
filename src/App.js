@@ -1,9 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./App.css";
-import UploadPage from "./UploadPage";
-import CalendarComponent from "./CalendarComponent";
-import ProjectOverviewPage from "./ProjectOverviewPage"; 
+import UploadPage from "./UploadPage"; 
+import CalendarComponent from "./CalendarComponent"; 
 
 function App() {
   const text = "betterTransit".split("");
@@ -11,14 +10,6 @@ function App() {
   // Track scroll position
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-
-  // Ref for the project overview section
-  const overviewRef = useRef(null);
-
-  // Function to scroll smoothly to the overview section
-  const scrollToOverview = () => {
-    overviewRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <div className="app-container">
@@ -47,20 +38,15 @@ function App() {
           >
             "Optimizing subway ridership, one prediction at a time."
           </motion.p>
-
-          {/* Scroll Down Button */}
-          <button className="scroll-button" onClick={scrollToOverview}>Learn More</button>
         </div>
-      </section>
-
-      {/* Project Overview Section (Scroll Target) */}
-      <section ref={overviewRef} className="overview-section">
-        <ProjectOverviewPage />
       </section>
 
       {/* Upload Section (Blue background) with Calendar */}
       <section className="upload-page">
+        {/* Upload page contents */}
         <UploadPage />
+        
+        {/* Calendar should be positioned in the top right of the blue section */}
         <div className="calendar-container">
           <CalendarComponent />
         </div>
