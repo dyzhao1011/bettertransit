@@ -12,22 +12,28 @@ function App() {
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
   return (
-    <div className="app-container">
-      {/* Home Section (Yellow background) */}
-      <section className="home-container">
-        <div className="title-container">
-          <motion.div className="title" style={{ opacity }}>
-            {text.map((letter, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.08, duration: 0.6, ease: "easeOut" }}
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </motion.div>
+    <Router>
+      <Routes>
+        {/* Main Page */}
+        <Route
+          path="/"
+          element={
+            <div className="app-container">
+              {/* Home Section */}
+              <section className="home-container">
+                <div className="title-container">
+                  <motion.div className="title" style={{ opacity }}>
+                    {text.map((letter, index) => (
+                      <motion.span
+                        key={index}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.08, duration: 0.6, ease: "easeOut" }}
+                      >
+                        {letter}
+                      </motion.span>
+                    ))}
+                  </motion.div>
 
           {/* Motto underneath the title */}
           <motion.p
