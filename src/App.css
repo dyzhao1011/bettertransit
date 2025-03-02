@@ -342,23 +342,6 @@ td {
   border-radius: 50%;
 }
 
-/* Style for the time picker dropdown */
-.time-selector {
-  width: 100%;
-  padding: 8px;
-  border: 2px solid #007bff;
-  border-radius: 5px;
-  font-size: 1rem;
-  background-color: white;
-  color: #007bff;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.time-selector:hover {
-  background-color: #e6f2ff;
-}
-
 /* Style for the selected date and time display */
 .selected-info {
   color: #007bff;

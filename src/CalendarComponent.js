@@ -4,34 +4,36 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function CalendarComponent() {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTime, setSelectedTime] = useState(null);
-  const [selectedDateTime, setSelectedDateTime] = useState(null);
+  const [formattedDate, setFormattedDate] = useState("");
 
-  // Generate available time slots (1-hour intervals)
-  const generateTimeSlots = () => {
-    const times = [];
-    for (let hour = 0; hour < 24; hour++) {
-      const time = new Date();
-      time.setHours(hour, 0, 0, 0);
-      times.push(time);
-    }
-    return times;
-  };
-
-  // Format date and time to match dataset format (YYYY-MM-DD HH:mm:ss)
-  const formatDateTime = (date) => {
+  // Format date to match dataset format (YYYY-MM-DD)
+  const formatDate = (date) => {
     const pad = (num) => (num < 10 ? `0${num}` : num);
-    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
   };
 
-  // Update selectedDateTime whenever date or time changes
+  // Update formattedDate whenever date changes
   useEffect(() => {
-    if (selectedDate && selectedTime) {
-      const newDateTime = new Date(selectedDate);
-      newDateTime.setHours(selectedTime.getHours(), 0, 0, 0);
-      setSelectedDateTime(formatDateTime(newDateTime));
+    if (selectedDate) {
+      setFormattedDate(formatDate(selectedDate));
     }
-  }, [selectedDate, selectedTime]);
+  }, [selectedDate]);
+
+  // Send date to backend
+  useEffect(() => {
+    if (formattedDate) {
+      fetch("http://localhost:5000/api/save-date", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ date: formattedDate }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log("Date saved:", data))
+        .catch((error) => console.error("Error saving date:", error));
+    }
+  }, [formattedDate]);
 
   return (
     <div className="calendar-wrapper">
@@ -44,24 +46,10 @@ function CalendarComponent() {
         inline // Full calendar display
       />
 
-      <h3>Select a Time</h3>
-      <select
-        className="time-selector"
-        value={selectedTime ? selectedTime.toISOString() : ""}
-        onChange={(e) => setSelectedTime(new Date(e.target.value))}
-      >
-        <option value="" disabled>Select a time</option>
-        {generateTimeSlots().map((time, index) => (
-          <option key={index} value={time.toISOString()}>
-            {time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false })}
-          </option>
-        ))}
-      </select>
-
-      {selectedDateTime && (
+      {formattedDate && (
         <div className="selected-info">
-          <h4>Selected Date and Time:</h4>
-          <p>{selectedDateTime}</p>
+          <h4>Selected Date:</h4>
+          <p>{formattedDate}</p>
         </div>
       )}
     </div>
