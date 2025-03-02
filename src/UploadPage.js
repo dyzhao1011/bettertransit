@@ -72,7 +72,6 @@ function UploadPage() {
           </label>
           </div>
 
-
       <div className="uploaded-files">
         <h3>Files</h3>
         {files.length > 0 ? (
@@ -133,4 +132,3 @@ function UploadPage() {
 }
 
 export default UploadPage;
-
