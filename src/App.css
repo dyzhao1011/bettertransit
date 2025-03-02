@@ -287,23 +287,25 @@ td {
   text-align: center;
 }
 
-/* Calendar container styling improvement - Fixed positioning */
+/* Calendar container - Ensure it is fully visible */
 .calendar-container {
   position: absolute;
-  top: 65px;
-  right: 140px;
+  top: 20px;
+  right: 20px;
   background: white;
   padding: 1rem;
   border-radius: 10px;
   border: 2px solid #007bff;
   text-align: center;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-  max-width: 300px;
-  overflow: visible;
-  z-index: 1000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px; /* Ensures it doesn't stretch too wide */
+  overflow: visible; /* Prevents cutting off */
+  z-index: 1000; /* Ensures it stays on top */
+  margin-right: 125px;
+  margin-top: 30px;
 }
 
-/* Ensure it stays fixed and doesn't shift */
+/* Upload section - Ensure enough space */
 .upload-page {
   position: relative;
   display: flex;
@@ -314,7 +316,7 @@ td {
   width: 100vw;
   background-color: #007bff;
   padding: 2rem;
-  overflow: visible;
+  overflow: visible; /* Prevents clipping */
 }
 
 /* Calendar heading */
@@ -327,7 +329,7 @@ td {
 /* Date picker adjustments */
 .react-datepicker {
   border: none !important;
-  z-index: 1001;
+  z-index: 1001; /* Ensures it's above other elements */
 }
 
 .react-datepicker__header {
@@ -338,8 +340,32 @@ td {
 .react-datepicker__day--selected {
   background: #ffdb4d !important;
   color: #007bff !important;
+}
+
+/* Learn More Button - Smaller & Boxed */
+.overview-button {
+  display: inline-block;
+  padding: 10px 20px; /* Smaller padding */
+  font-size: 1rem; /* Reduce font size */
   font-weight: bold;
   border-radius: 50%;
+}
+
+/* Style for the time picker dropdown */
+.time-selector {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: white;
+  color: #007bff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.time-selector:hover {
+  background-color: #e6f2ff;
 }
 
 /* Style for the selected date and time display */
@@ -348,57 +374,22 @@ td {
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
-  margin-top: 10px;
-}
-
-/* Modal content fade-in */
-.modal-content {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Upload box styling */
-.upload-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 400px;
-  height: 300px;
-  border: 2px dashed #007bff;
-  background-color: white;
-  border-radius: 10px;
-  text-align: center;
-  padding: 20px;
-  transition: background-color 0.3s ease;
-  margin-left: 2rem;
-}
-
-/* Improved button hover effects */
-.upload-button, .calc-button {
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.upload-button:hover, .calc-button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
-
-.upload-button:active, .calc-button:active {
-  transform: scale(0.95);
-}
-/* Upload progress bar */
-.progress-bar-container {
-  width: 100%;
-  background: #ddd;
-  border-radius: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  text-decoration: none; /* Removes default link underline */
+  position: relative;
   overflow: hidden;
-  margin-top: 10px;
 }
 
-.progress-bar {
-  height: 10px;
-  width: 0%;
-  background: #ffdb4d;
-  transition: width 0.4s ease-in-out;
+/* Hover effect */
+.overview-button:hover {
+  background: #007bff;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.25);
 }
 
+/* Click effect */
+.overview-button:active {
+  transform: scale(0.95);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+}
