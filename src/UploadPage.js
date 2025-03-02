@@ -6,6 +6,7 @@ function UploadPage() {
   const [data, setData] = useState([]); 
   const [uploading, setUploading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [prediction, setPrediction] = useState();
 
   const formatFileSize = (size) => {
     if (size < 1024) return `${size} B`;
@@ -28,7 +29,7 @@ function UploadPage() {
       formData.append("file", file);
 
       try {
-        const response = await fetch("http://localhost:5000/upload", {
+        const response = await fetch("http://localhost:5555/upload", {
           method: "POST",
           body: formData,
         });
@@ -52,24 +53,26 @@ function UploadPage() {
     setUploading(false);
   };
 
-  const makePrediction = () =>{
+  const makePrediction = async () =>{
     try {
-      const response = fetch("http://localhost:5000/predict", {
+      const response = await fetch("http://localhost:5555/predict", {
         method: "POST",
       });
-
+      
       if (response.ok) {
-        const result = response.json();
-        if (result.data) {
-          console.log(result)
+        const result = await response.json();
+        if (result.prediction) {
+          console.log(result.prediction);
+          setPrediction(Math.round(result.prediction));
         } else {
           console.error("Error:", result.error);
         }
-      } 
-    } catch (error) {
-      console.error("Upload error:", error);
-    }
-  }
+      } else {
+        console.error("Response error:", response.status);
+      }
+    } catch(error){
+      console.log(error)
+    }}
   return (
     <div className="upload-container">
       <div className="upload-box">
@@ -131,7 +134,7 @@ function UploadPage() {
           <div className="modal-content">
             <button className="close-button" onClick={() => setIsModalOpen(false)}>X</button>
             <h2>Calculation Results</h2>
-            <p>This is where we will display calculation information.</p>
+            <p>{prediction}</p>
           </div>
         </div>
       )}

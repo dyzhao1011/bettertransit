@@ -138,8 +138,9 @@ def predict():
     lastest_data = np.reshape(lastest_data, (1, 23, 1))
     prediction = model1.predict(lastest_data)[0][0]
 
-    return prediction
+    print(prediction)
+    return jsonify({"message": "File uploaded successfully", "prediction": prediction.tolist()})
     
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5555)
