@@ -342,6 +342,22 @@ td {
   color: #007bff !important;
 }
 
+/* Style for the calendar and time picker headings */
+.calendar-wrapper h3 {
+  color: #007bff; /* Blue color */
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Style for the selected date and time display */
+.selected-info {
+  color: #007bff; /* Blue color */
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
 /* Learn More Button - Smaller & Boxed */
 .overview-button {
   display: inline-block;
@@ -375,4 +391,70 @@ td {
 .overview-button:active {
   transform: scale(0.95);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Project Overview Page Styling */
+.overview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background: #007bff; /* Blue background */
+  color: white;
+  text-align: center;
+  padding: 3rem;
+  font-family: "League Spartan", sans-serif; /* Updated to League Spartan */
+}
+
+/* Title Styling */
+.overview-title {
+  font-size: 10rem; /* Increased font size */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.5rem;
+  color: #ffdb4d; /* Yellow title */
+}
+
+/* Problem and Solution Sections */
+.problem-statement, .solution-statement {
+  font-size: 1.4rem;
+  margin: 1rem 0;
+  max-width: 700px;
+  line-height: 1.6;
+  background: white; /* White background for the boxes */
+  color: #003366; /* Dark blue text */
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Elevator Pitch */
+.elevator-pitch {
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: bold;
+  color: #ffdb4d; /* Gold accent */
+  margin-top: 1rem;
+}
+
+/* Scroll to Home Button */
+.back-button {
+  margin-top: 2rem;
+  padding: 14px 28px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #ffdb4d;
+  color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #ffc107;
+  transform: scale(1.05);
 }
