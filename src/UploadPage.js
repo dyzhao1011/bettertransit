@@ -2,19 +2,24 @@ import React, { useState } from "react";
 import "./App.css";
 
 function UploadPage() {
-  const [files, setFiles] = useState([]); // Store uploaded files
-  const [data, setData] = useState([]); // Store parsed CSV data
+  const [files, setFiles] = useState([]); 
+  const [data, setData] = useState([]); 
   const [uploading, setUploading] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
-  // Handle file selection
+  const formatFileSize = (size) => {
+    if (size < 1024) return `${size} B`;
+    if (size < 1024 * 1024) return `${(size / 1024).toFixed(2)} KB`;
+    if (size < 1024 * 1024 * 1024) return `${(size / (1024 * 1024)).toFixed(2)} MB`;
+    return `${(size / (1024 * 1024 * 1024)).toFixed(2)} GB`;
+  };
+
   const handleFileChange = (event) => {
     const selectedFiles = Array.from(event.target.files);
     setFiles(selectedFiles);
     uploadFiles(selectedFiles);
   };
 
-  // Upload files to Flask
   const uploadFiles = async (selectedFiles) => {
     setUploading(true);
 
@@ -31,7 +36,7 @@ function UploadPage() {
         if (response.ok) {
           const result = await response.json();
           if (result.data) {
-            setData(result.data); // Store parsed data from Flask
+            setData(result.data);
           } else {
             console.error("Error:", result.error);
           }
@@ -48,7 +53,6 @@ function UploadPage() {
 
   return (
     <div className="upload-container">
-      {/* Upload Box */}
       <div className="upload-box">
         <p>Drag and drop files here</p>
         <p>- OR -</p>
@@ -58,14 +62,13 @@ function UploadPage() {
         </label>
       </div>
 
-      {/* Uploaded Files List */}
       <div className="uploaded-files">
         <h3>Files</h3>
         {files.length > 0 ? (
           <ul>
             {files.map((file, index) => (
               <li key={index}>
-                {file.name} - {file.size} bytes
+                {file.name} - {formatFileSize(file.size)}
               </li>
             ))}
           </ul>
@@ -74,7 +77,6 @@ function UploadPage() {
         )}
       </div>
 
-      {/* Display Parsed CSV Data */}
       <div className="parsed-data">
         <h3>Parsed Ridership Data</h3>
         {data.length > 0 ? (
@@ -101,12 +103,10 @@ function UploadPage() {
         )}
       </div>
 
-      {/* Calculate Button */}
       <div className="calc-button-container">
         <button className="calc-button" onClick={() => setIsModalOpen(true)}>Calculate</button>
       </div>
 
-      {/* Modal Popup */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
