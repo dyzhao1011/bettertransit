@@ -4,7 +4,7 @@ import "./App.css";
 import UploadPage from "./UploadPage";
 import CalendarComponent from "./CalendarComponent";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import ProjectOverview from "./ProjectOverview";
+import ProjectOverview from "./ProjectOverviewPage";
 import { useState } from "react";
 
 function App() {

@@ -22,7 +22,7 @@ function ProjectOverviewPage() {
         <strong>The Problem:</strong> Subway systems often face unpredictable ridership, leading to overcrowding, inefficient scheduling, and commuter dissatisfaction.
       </p>
       <p className="solution-statement">
-        <strong>Our Solution:</strong> BetterTransit provides data-driven predictions to help optimize ridership, improving scheduling and enhancing the commuter experience.
+        <strong>Our Solution:</strong> betterTransit provides data-driven predictions to help optimize ridership, improving scheduling and enhancing the commuter experience.
       </p>
       <p className="elevator-pitch">
         <em>“Optimizing subway ridership, one prediction at a time.”</em>
