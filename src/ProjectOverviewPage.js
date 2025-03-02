@@ -6,13 +6,7 @@ function ProjectOverviewPage() {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate("/"); // Go back to the home page
-    setTimeout(() => {
-      const uploadSection = document.getElementById("upload");
-      if (uploadSection) {
-        uploadSection.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 100); // Ensure smooth scrolling after navigation
+    navigate("/upload"); // Navigate directly to the Upload Page
   };
 
   return (
